@@ -3,6 +3,7 @@ import datetime
 import logging
 import json
 import api
+import os
 
 from websocket import WebSocket
 from cmd_type import CHZZK_CHAT_CMD
@@ -197,15 +198,30 @@ def get_logger():
 
 if __name__ == '__main__':
 
+    # if channel id is given as argument, use it
     parser = argparse.ArgumentParser()
-    parser.add_argument('--streamer_id', type=str, default='9381e7d6816e6d915a44a13c0195b202')
+    parser.add_argument('--streamer_id', type=str, default=None)
     args = parser.parse_args()
+    if not args.streamer_id is None:
+        streamer_id = args.streamer_id
+    elif 'STREAMER_ID' in os.environ:
+        # if channel id is given through environment variable, use it
+        streamer_id = os.environ['STREAMER_ID']
+    else:
+        # channel id is not given
+        raise ValueError('streamer_id is not given')
 
-    with open('cookies.json') as f:
-        cookies = json.load(f)
+    # get cookies from file
+    # with open('cookies.json') as f:
+    #     cookies = json.load(f)
+    # get cookies from environment variable
+    cookies = {
+        'NID_AUT': os.environ['NID_AUT'],
+        'NID_SES': os.environ['NID_SES'],
+    }
 
     logger = get_logger()
-    chzzkchat = ChzzkChat(args.streamer_id, cookies, logger)
+    chzzkchat = ChzzkChat(streamer_id, cookies, logger)
 
     # 채팅창으로 메세지 보내기
     # mesaage = ' '
