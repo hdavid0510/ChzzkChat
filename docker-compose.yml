@@ -1,0 +1,13 @@
+version: 3
+
+services:
+  chat-logger:
+    image: hdavid0510/chzzk-chat
+    container_name: chzzk-chat-logger
+    restart: always
+    environment:
+      NID_AUT: changeme
+      NID_SES: changeme
+      STREAMER_ID: changeme
+    volumes:
+      - ./chat.log:/app/chat.log
