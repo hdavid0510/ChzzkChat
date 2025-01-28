@@ -1,1 +1,11 @@
+# python files
 __pycache__
+
+# virtualenv
+chzzk-chat.venv
+
+# settings
+cookies.json
+
+# data
+chat.log
