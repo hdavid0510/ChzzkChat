@@ -1,7 +1,8 @@
 # python files
 __pycache__
 
-# virtualenv
+# virtual environments
+.conda
 chzzk-chat.venv
 
 # settings
@@ -9,3 +10,6 @@ cookies.json
 
 # data
 chat.log
+
+# vscode
+.vscode
