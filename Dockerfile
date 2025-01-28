@@ -19,9 +19,9 @@ WORKDIR /app
 COPY . .
 
 # chat.log file should be saved inside a volume
-VOLUME /log
-RUN	touch /log/chat.log \
-&&	ln -s /log/chat.log /app/chat.log
+# VOLUME /log
+# RUN	touch /log/chat.log \
+# &&	ln -s /log/chat.log /app/chat.log
 
 # Install the requirements and set timezone
 RUN	pip install -r requirements.txt \
